@@ -8,11 +8,11 @@ The way to name the directories in my submission repository is as follows:
 part0
 part1
   ├─ courseinfo
-	├─ unicafe
-	├─ anecdotes
+  ├─ unicafe
+  └─ anecdotes
 part2
   ├─ phonebook
-  ├─ countries
+  └─ countries
 ```
 
 So, each part has its own directory, which contains a directory for each exercise set (like the unicafe exercises in part 1).
