@@ -1,6 +1,6 @@
 The exercises are submitted via GitHub, and by marking the exercises as done in the submission system.
 
-I submit all of the exercises into the same repository,.
+I submit all of the exercises into the same repository.
 
 The way to name the directories in my submission repository is as follows:
 
