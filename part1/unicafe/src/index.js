@@ -15,20 +15,24 @@ const Button = ({ handleClick, text }) => (
 );
 
 const Statistics = ({ good, neutral, bad, allClicks, average, positive }) => {
-  return (
-    <div>
-      <table>
-        <tbody>
-          <Statistic name="good" value={good} />
-          <Statistic name="neutral" value={neutral} />
-          <Statistic name="bad" value={bad} />
-          <Statistic name="all" value={allClicks} />
-          <Statistic name="average" value={average} />
-          <Statistic name="positive" value={positive} />
-        </tbody>
-      </table>
-    </div>
-  );
+  if (allClicks === 0) {
+    return <div>No feedback given</div>;
+  } else {
+    return (
+      <div>
+        <table>
+          <tbody>
+            <Statistic name="good" value={good} />
+            <Statistic name="neutral" value={neutral} />
+            <Statistic name="bad" value={bad} />
+            <Statistic name="all" value={allClicks} />
+            <Statistic name="average" value={average} />
+            <Statistic name="positive" value={positive} />
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 };
 
 const App = () => {
@@ -67,18 +71,14 @@ const App = () => {
       <Button handleClick={handleNeutralClick} text="neutral" />
       <Button handleClick={handleBadClick} text="bad" />
       <h1>statistics</h1>
-      {allClicks === 0 ? (
-        <div>No feedback given</div>
-      ) : (
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          allClicks={allClicks}
-          average={average}
-          positive={positive}
-        />
-      )}
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        allClicks={allClicks}
+        average={average}
+        positive={positive}
+      />
     </div>
   );
 };
