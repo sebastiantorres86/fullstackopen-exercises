@@ -3,12 +3,15 @@ import personService from "./services/persons";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [message, setMessage] = useState(null);
+  const [style, setStyle] = useState("");
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => {
@@ -31,6 +34,11 @@ const App = () => {
     if (!duplicateName) {
       personService.create(personObject).then((returnedPerson) => {
         setPersons(persons.concat(returnedPerson));
+        setStyle("success");
+        setMessage(`Added ${personObject.name}`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 5000);
       });
     } else if (duplicateName && duplicateNumber) {
       window.alert(`${newName} is already added to the phonebook`);
@@ -48,6 +56,11 @@ const App = () => {
                   person.id !== changedPerson.id ? person : response
                 )
               );
+              setStyle("success");
+              setMessage(`Updated ${personObject.name}`);
+              setTimeout(() => {
+                setMessage(null);
+              }, 5000);
             })
         : setPersons(persons);
     }
@@ -70,10 +83,22 @@ const App = () => {
 
   const removePerson = (id, name) => {
     if (window.confirm(`Delete ${name} ?`)) {
-      personService.remove(id).then(() => {
-        const del = persons.filter((person) => id !== person.id);
-        setPersons(del);
-      });
+      personService
+        .remove(id)
+        .then(() => {
+          const del = persons.filter((person) => id !== person.id);
+          setPersons(del);
+        })
+        .catch((error) => {
+          setStyle("error");
+          setMessage(
+            `Information of ${name} has already been removed from server`
+          );
+          setTimeout(() => {
+            setMessage(null);
+            setPersons(persons.filter((person) => id !== person.id));
+          }, 5000);
+        });
     }
   };
 
@@ -86,6 +111,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification style={style} message={message} />
       <Filter handleChange={handleChange} searchTerm={searchTerm} />
       <h3>Add a new</h3>
       <PersonForm
