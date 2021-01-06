@@ -1,34 +1,24 @@
 {
-  "persons": [
-    {
-      "name": "Marisa",
-      "number": "4265879",
-      "id": 7
+  "persons":[
+    { 
+      "name": "Arto Hellas", 
+      "number": "040-123456",
+      "id": 1
     },
-    {
-      "name": "Jael",
-      "number": "1245398",
-      "id": 8
+    { 
+      "name": "Ada Lovelace", 
+      "number": "39-44-5323523",
+      "id": 2
     },
-    {
-      "name": "maria",
-      "number": "2258855",
-      "id": 9
+    { 
+      "name": "Dan Abramov", 
+      "number": "12-43-234345",
+      "id": 3
     },
-    {
-      "name": "linux",
-      "number": "124587",
-      "id": 10
-    },
-    {
-      "name": "sdfsadf",
-      "number": "21416",
-      "id": 11
-    },
-    {
-      "name": "Sebastian",
-      "number": "2235254063",
-      "id": 12
+    { 
+      "name": "Mary Poppendieck", 
+      "number": "39-23-6423122",
+      "id": 4
     }
   ]
 }
